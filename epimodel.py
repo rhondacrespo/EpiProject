@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 #rhonda crespo, carlos phillips
 #april 25, 2020
 #this is a simple epidemiology model using the SIR model developed by
@@ -9,8 +11,14 @@
 #policymakers. Further implementation would incorporate how to reduce
 #infection rate (immunization, social distancing, medicine, etc).
 #Honor Code: We pledge that this program represents our own program
-#code. We received no help in designing and
-#debugging my program.  Reference URLs:
+#code. We received ___  help in designing and
+#debugging my program.  References:
+#Hubbs, Christian. “Social Distancing to Slow the Coronavirus.”
+#Medium. Available at
+#https://towardsdatascience.com/social-distancing-to-slow-the-coronavirus-768292f04296
+#"The SIR Model," Availabe at
+#https://scipython.com/book/chapter-8-scipy/additional-examples/the-sir-epidemic-model/
+#Yeghikyan, George. “Modelling the Coronavirus Epidemic with Python: Are Cities Prepared for an Epidemic?” Medium. Available at https://towardsdatascience.com/modelling-the-coronavirus-epidemic-spreading-in-a-city-with-python-babd14d82fa2
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -31,7 +39,7 @@ def sir_model(N, t, dt, init_values):
     S_0, I_0, R_0 = init_values
     S, I, R = [], [], []
     dt = t[1] - t[0]
-    for i in t[1]:
+    for i in t:
         next_S = int(S[-1] - (beta*S[-1]*I[-1])*dt)
         next_I = int(I[-1] + (beta*S[-1]*I[-1]/N-gamma* I[-1]*dt))
         next_R = int( R[-1] + (gamma*I[-1]*dt))
