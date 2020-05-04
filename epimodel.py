@@ -32,17 +32,17 @@ def main():
     init_values = 1 - 1/N, 1/N, 0
     beta = 2.0 #contact rate in the population
     gamma = 1.0 #inverse of the mean infectious period
-    results = sir_model(N, t, dt, init_values) #runs the model
+    results = sir_model(N, t, dt, beta, init_values) #runs the model
 
 #these are the differential equations that calculate the SIR model
-def sir_model(N, t, dt, init_values):
+def sir_model(N, t, dt, beta, init_values):
     S_0, I_0, R_0 = init_values
     S, I, R = [], [], []
     dt = t[1] - t[0]
     for i in t:
-        next_S = int(S[-1] - (beta*S[-1]*I[-1])*dt)
-        next_I = int(I[-1] + (beta*S[-1]*I[-1]/N-gamma* I[-1]*dt))
-        next_R = int( R[-1] + (gamma*I[-1]*dt))
+        next_S = int(S[:0] - (beta*S[:0]*I[:0])*dt)
+        next_I = int(I[:0] + (beta*S[:0]*I[:0]/N-gamma* I[:0]*dt))
+        next_R = int( R[:1] + (gamma*I[:1]*dt))
         S.append(next_S)
         I.append(next_I)
         R.append(next_R)
